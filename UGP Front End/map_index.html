@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map Testing</title>
+
+    <style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+        #button1{position:relative; left: 300px}
+</style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+
+
+
+</head>
+<body>
+
+<script>
+
+    // This script sends an AJAX call to the server via button click
+    //(this could be changed to anything...aka the map click)
+    // Logs a ton of stuff to see that it works...
+    // Also, format is always going to be lon,lat (x,y)
+    var latLonObject = {"lat":69.87, "long":-47.01, "dist":100};
+	var jsonFlowline = {};
+    $(document).ready(function () {
+        $("button").click(function () {
+            console.log("Clicked...");
+                $.ajax({
+                type: 'POST',
+                url:'/ajax/get_flowline/', //this url is specified on server
+                data: JSON.stringify(latLonObject),
+                contentType: 'application/json',
+                    success: function (d) {
+                    console.log("Success!");
+                    jsonFlowline = d;
+                    console.log(jsonFlowline);
+
+                    },
+                    failure: function (d) {
+                        console.log("AJAX Failed");
+                        console.log(d.status);
+                    }
+
+                });
+
+        })
+    });
+
+</script>
+
+<!--This section is a stand-in for the map. I used Mapbox just to test things-->
+
+<div id='map' style='width: 700px; height: 600px;'></div>
+                    <script>
+
+                        mapboxgl.accessToken = 'pk.eyJ1IjoidHZlamFyNSIsImEiOiJjanM1NjBpaHkwY2Q3NDNyd2MyZTBicHhqIn0.3EjZc0IFofqO6lr3rhXgbg';
+                    var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                        center: [-15,75],
+                        zoom: 2.2
+                    });
+
+                     map.on('click', function(e){
+                         mapJson = JSON.stringify(e.lngLat);
+                         console.log("Lat Long grabbed from map");
+
+                    });
+
+
+
+                    </script>
+
+<button id="button1">Send JSON Data to Server</button>
+
+</body>
+
+</html>

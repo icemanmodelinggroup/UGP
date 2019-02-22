@@ -1,32 +1,51 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import HttpResponse
+from QSSICode.createDatasets import createInitialDatasets
+from QSSICode.translation import LonLatToProj, ProjToLatLon
+from QSSICode.createFlowline import Flowline
+from django.views.decorators.csrf import csrf_exempt
 import json
+import sys
 
 
 # Create your views here.
+#---------------------------
+
+#This view sends the user to the landing/home page
+def display_home(request):
+    return render(request, 'UGP/map_index.html',{})
+
+#This view recieves x,y coords from map via JSON
+#then sends back the shear margin arrays in long,lat format
+@csrf_exempt
 def get_flowline(request):
-    # process JSON xy points
-    json_data = json.loads(request.body.decode('utf-8'))
-    lat =json_data[0]
-    long=json_data[1]
+    #If POST then generate the flowline
+    if request.method == 'POST':
+        print("Received!")
+        print("Processing Flowline!")
+    # process JSON xy points (Deserialize JSON)
+        json_data = json.loads(request.body)
+        long = json_data['long']
+        lat = json_data['lat']
+        distance = json_data['dist']
 
-    from QSSICode.translation import LonLatToProj
-    lonLatTrans = LonLatToProj([[long, lat]])
+    #Translator for lon,lat to x,y
+        lonLatTrans = LonLatToProj([[long, lat]])
 
-    # create/grab dataset
-    #
+    # create datasets; this is temporary until I find a way to store it
+        myDatasetDict = createInitialDatasets()
 
     # put translated point into flowline
-    from QSSICode.createFlowline import Flowline
-    flowLineResponse = Flowline()
+        initialFlowline = Flowline(lonLatTrans.xPoints[0], lonLatTrans.yPoints[0], myDatasetDict, distance)
 
-    #Translate points back to lat,long
+    # Translate points back to lat,long
+        xyTrans = ProjToLatLon(initialFlowline.flowLine)
 
-    #dump flowline into JSONResponse
+    # dump flowline into JSONResponse (Serialize the dict)
+        flowLinePoints = {'lon':xyTrans.lonPoints,'lat':xyTrans.latPoints}
 
-    #data = myFlowline.flowLine ??
-    #return JsonResponse(data) ??
+    #Send the JSON back
+        return JsonResponse(flowLinePoints)
 
-
-
-    return JsonResponse(flowLinePoints)
+    else: return(HttpResponse("This is not a POST Request"))
