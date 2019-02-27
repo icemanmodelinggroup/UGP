@@ -23,6 +23,22 @@
 		height:40px;
 	
 	}
+	
+	
+	<!--This is for the map. -->
+	    /* styles */
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      width: 45vw;
+      height: 100vh;
+    }
+	
+	
 	</style>
 	
 
@@ -53,8 +69,57 @@
 		<div class="row">
 			<div class="col-12 col-md-6 left-sidebar">
 				<div class="text-center">
-					<!-- <div id="map" class="iframe-container"></div>  -->
-					<img class="img-responsive" src="./Greenland.jpg" height="800" width="700"></img>
+					<div id="map"></div>
+					<script>
+					
+					<!-- This filepath needs to be changed to the filepath for our server. -->
+					<!-- The pings are in the link I sent on Tuesday 2/26/2019 to your gmail email Tony-->
+					var TILE_URL = 'testTiles/{z}_{x}_{y}.png';
+
+					var map;
+					var mapEl;
+					var layer;
+					var layerID = 'my-custom-layer';
+
+					window.initMap = function() {
+					  // Select the element with id="map".
+					  mapEl = document.querySelector('#map');
+					  
+					  // Create a new map.
+					  map = new google.maps.Map(mapEl, {
+						center: new google.maps.LatLng(71.7069, -42.6043),
+						zoom: 4
+					  });
+					  
+					  // Create a tile layer, configured to fetch tiles from TILE_URL.
+					  layer = new google.maps.ImageMapType({
+						name: layerID,
+						getTileUrl: function(coord, zoom) {
+						  console.log(coord);
+						  var url = TILE_URL
+							.replace('{x}', coord.x)
+							.replace('{y}', coord.y)
+							.replace('{z}', zoom);
+							console.log(url);
+						  return url;
+						},
+						tileSize: new google.maps.Size(256, 256),
+						minZoom: 2,
+						maxZoom: 7
+					  });
+					  
+					  // Apply the new tile layer to the map.
+					  map.mapTypes.set(layerID, layer);
+					  map.setMapTypeId(layerID);
+					};
+					</script>
+					
+					<!-- NOTE: The 'key' parameter should be replaced with your Google Maps API Key. -->
+					<script async defer
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZbuGSEBqEPNHYvx1MzAIeX3MU6jOHjMw&callback=initMap">
+					</script>
+					
+					
 					
 				</div>
 				
