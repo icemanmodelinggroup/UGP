@@ -15,7 +15,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="scripts/script.js"></script>
 	<link rel="stylesheet" href="cssStyle.css">
-	<script src="scripts/map.js"></script>
+
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZbuGSEBqEPNHYvx1MzAIeX3MU6jOHjMw&callback=initMap">
     </script>
@@ -36,6 +36,16 @@
 				<a class="navbar-brand" href="#">Icemen Development Group</a>	
 		</div>
 	</nav>
+	
+	<select id="mapType">
+		<option value="0">Velocity</option>
+		<option value="1">Bed</option>
+		<option value="2">Surface</option>
+		<option value="3">SMB</option>
+		<option value="4">Thickness</option>
+		<option value="5">T2M</option>
+	</select>			
+
 	<!--Creates the page body-->
 	<main role="main" class="container-fluid">
 		<!-- Creates the map image container-->
@@ -112,7 +122,8 @@
 							<th>T2M</th>
 						</tr>
 					</table>
-			</div>		
+			</div>
 		</div>
 </body>
+	<script src="scripts/map.js"></script>
 </html>
