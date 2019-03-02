@@ -95,6 +95,19 @@ window.initMap = function() {
 		
 		point = getPixelLocation();
 		console.log(point);
+		
+		
+		/* DO Math Eventually have x,y 
+			DO AJAX to backend using x,y
+			Some dictionary of array
+			
+			Passed array to Jake
+			
+			
+			Create Polyline USE DUMMY DATA
+		*/
+		
+		
 	});
 };
 
@@ -126,5 +139,3 @@ function getPixelLocation(currentLatLng) {
 function clickEvent(zoomLevel) {
 	console.log(zoomLevel);
 }
-
-
