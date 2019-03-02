@@ -21,6 +21,31 @@ var layerID = 'my-custom-layer';
 var TILE_URL = 'tiles/' + currentMap + '/{z}_{x}_{y}.png';
 
 
+var menu = document.getElementById("mapType");
+menu.addEventListener("change", changeMap);
+function changeMap(event) {
+	if (menu.value == '0') {
+		TILE_URL = 'tiles/Velocity/{z}_{x}_{y}.png';
+	} 
+	else if (menu.value == '1') {
+		TILE_URL = 'tiles/Bed/{z}_{x}_{y}.png';
+	} 
+	else if (menu.value == '2') {
+		TILE_URL = 'tiles/Surface/{z}_{x}_{y}.png';
+	}
+	else if (menu.value == '3') {
+		TILE_URL = 'tiles/Smb/{z}_{x}_{y}.png';
+	}
+	else if (menu.value == '4') {
+		TILE_URL = 'tiles/Thickness/{z}_{x}_{y}.png';
+	}
+	else if (menu.value == '5') {
+		TILE_URL = 'tiles/T2m/{z}_{x}_{y}.png';
+	}
+
+}	
+
+
 window.initMap = function() {
 	// Select the element with id="map".
 	mapEl = document.querySelector('#map');
@@ -57,7 +82,7 @@ window.initMap = function() {
 		
 		tileSize: new google.maps.Size(256, 256),
 		minZoom: 4,
-		maxZoom: 7
+		maxZoom: 10
 	});
 
 	map.mapTypes.set(layerID, layer);
@@ -101,3 +126,5 @@ function getPixelLocation(currentLatLng) {
 function clickEvent(zoomLevel) {
 	console.log(zoomLevel);
 }
+
+
