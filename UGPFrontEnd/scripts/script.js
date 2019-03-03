@@ -11,7 +11,7 @@ function Line(pointList, numPoints, name){
 
 //Creates a Point object
 function Point(lat, lon, pointValues){
-	this.name = "" + lat + ", " + lon;
+	this.name = "" + lat + "N, " + lon + "E";
 	this.lat = lat;
 	this.lon = lon;
 	this.velocity = pointValues[0];
@@ -47,7 +47,7 @@ function printData(point, numRows){
 	var tab = document.getElementById("consoletable");
 	var row = tab.insertRow(numRows);
 	
-	var pointText = "" + $("#latinput").val() + " N, " + $("#longinput").val() + "S";
+	var pointText = point.name;
 	
 	//Create strings
 	var text1 = point.velocity.toFixed(2);

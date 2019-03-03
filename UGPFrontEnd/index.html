@@ -33,21 +33,29 @@
 			<div class="col-lg-5"></div>
 			<div class="col-md-2"></div>
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Icemen Development Group</a>	
+				<a class="navbar-brand justify-content-end" href="#">Icemen Development Group</a>
+				<img src="./images/ice3.png" width="40px" height="40px" />
+				<img src="./images/ice4.png" width="40px" height="40px" />
 		</div>
-	</nav>
-	
-	<select id="mapType">
-		<option value="0">Velocity</option>
-		<option value="1">Bed</option>
-		<option value="2">Surface</option>
-		<option value="3">SMB</option>
-		<option value="4">Thickness</option>
-		<option value="5">T2M</option>
-	</select>			
-
+	</nav>		
 	<!--Creates the page body-->
 	<main role="main" class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+			<h5>Click on a terminus point on the map to generate a flow line:</h5>
+			</div>
+			<div class="col-md-2 text-left">
+			<label for="mapType"><font size="-1">Map type:</font></label>
+			<select id="mapType">
+				<option value="0">Velocity</option>
+				<option value="1">Bed</option>
+				<option value="2">Surface</option>
+				<option value="3">SMB</option>
+				<option value="4">Thickness</option>
+				<option value="5">T2M</option>
+			</select>
+			</div>
+		</div>
 		<!-- Creates the map image container-->
 		<div class="row">
 			<div class="col-12 col-md-6 left-sidebar">
@@ -80,7 +88,7 @@
 							<div class="panel-body"></div>
 						</div>
 						<div class="row">
-							<h5>S</h5>
+							<h5>E</h5>
 						</div>
 					</div>
 					<div class="col-xs-3">

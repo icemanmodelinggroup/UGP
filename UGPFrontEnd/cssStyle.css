@@ -1,17 +1,28 @@
 table, th, td {
-border: 1px solid black;
+	border: 1px solid white;
+	color: white;
 }
 td{
+	color: white;
 	height:40px;
 
 }
 
+h3, h4{
+	color: Gainsboro;
+}
+h5, label{
+	color: Gainsboro;
+}
+
+
 html, body {
-      margin: 0;
-      padding: 0;
+	background-color: DarkSlateGrey;
+    margin: 0;
+    padding: 0;
 }
 
 #map {
-  width: 48vw;
-  height: 95vh;
+	width: 46vw;
+	height: 95vh;
 }
