@@ -102,11 +102,11 @@ window.initMap = function() {
 			Some dictionary of array
 			
 			Passed array to Jake
-			
-			
-			Create Polyline USE DUMMY DATA
-		*/
+
+
+			Call createLine() to create profile line function below. 
 		
+		*/
 		
 	});
 };
@@ -138,4 +138,31 @@ function getPixelLocation(currentLatLng) {
     }
 function clickEvent(zoomLevel) {
 	console.log(zoomLevel);
+}
+
+// Create the visual flowline. This function is not working yet. 
+// Need the coordinates. 
+function createLine() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 3,
+    center: {lat: 0, lng: -180},
+    mapTypeId: 'terrain'});
+	
+	//Example code if we statically put in lon lat values.
+	//The values will come from a call from Django.
+    var flowLineCoordinates = [
+        {lat: 37.772, lng: -122.214},
+        {lat: 21.291, lng: -157.821},
+        {lat: -18.142, lng: 178.431},
+        {lat: -27.467, lng: 153.027}];
+        
+	var flowLinePath = new google.maps.Polyline({
+        path: flowLineCoordinates,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+        });
+
+    flowLinePath.setMap(map);
 }
