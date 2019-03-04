@@ -25,16 +25,31 @@ function Point(lat, lon, pointValues){
 
 //This is the function that will retrieve point data from the server
 function retrieveData(latitude, longitude){
-	
-	values = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
-	j = 8;
 
-	//Insert call to AJAX function
-	
-	for(i = 0; i < 6; i++){
-		values[i] = ((longitude+j-2*i) - (1/5)*latitude*(i**2 - (j+i)**(.3)));
-		j--;
-	}
+	pointSend = {"lon": longitude, "lat": latitude};
+
+	$.ajax({
+		type: 'POST',
+		url: '/ajax/get_point_data/', //this url is specified on server
+		data: JSON.stringify(pointSend),
+		contentType: 'application/json',
+		success: function (d) {
+			console.log("Success!");
+			//This is what you send to the return value, a dict
+			//  ie value = pointOutput['smb']
+			//Or you can just do pointOutput, but you have to handle each
+			//  value later on ie, print_to_table(point['smb'])
+			pointOutput = d;
+			console.log(pointOutput);
+
+		},
+		failure: function (d) {
+			console.log("AJAX Failed");
+		}
+
+	});
+
+
 	var point = new Point(latitude, longitude, values);
 	
 	return point;
