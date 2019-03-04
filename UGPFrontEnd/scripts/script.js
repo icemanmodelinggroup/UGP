@@ -27,6 +27,7 @@ function Point(lat, lon, pointValues){
 function retrieveData(latitude, longitude){
 
 	pointSend = {"lon": longitude, "lat": latitude};
+	var pointOutput;
 
 	$.ajax({
 		type: 'POST',
@@ -48,6 +49,14 @@ function retrieveData(latitude, longitude){
 		}
 
 	});
+	
+	values = [];
+	values.append(pointOutput['velocity']);
+	values.append(pointOutput['bed']);
+	values.append(pointOutput['surface']);
+	values.append(pointOutput['SMB']);
+	values.append(pointOutput['thickness']);
+	values.append(pointOutput['T2M']);
 
 
 	var point = new Point(latitude, longitude, values);
