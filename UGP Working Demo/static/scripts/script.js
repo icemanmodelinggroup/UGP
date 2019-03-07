@@ -23,6 +23,7 @@ function Point(lat, lon, pointValues){
 	
 }
 
+//Ajax call for sending data to table
 function ajaxPoint(lat, lon, callback){
 
 	var values = [];
@@ -44,6 +45,7 @@ function ajaxPoint(lat, lon, callback){
 		.done(function (data) {
 
 			pointOutput = data;
+			//Pushing the data sets to the values
 			values.push(pointOutput.velocity);
 			values.push(pointOutput.bed);
 			values.push(pointOutput.surface);
@@ -52,20 +54,13 @@ function ajaxPoint(lat, lon, callback){
 			values.push(pointOutput.t2m);
 			console.log("Sending values to point...");
 			var point = new Point(lat, lon, values);
-
+			//Return statement for the Ajax, returning the new point
 			callback(point)
 		})
 		.fail(function (data) {
 			console.log("Could not retrieve point.")
 		});
 }
-
-//This is the function that will retrieve point data from the server
-// function retrieveData(latitude, longitude){
-// 	ajaxPoint(latitude, longitude, function (result) {
-// 		return result;
-// 	});
-// }
 
 function handle_point(point, oldPoints, numPoints, numRows){
 
@@ -97,7 +92,7 @@ function printData(point, numRows){
 	var text1 = point.velocity.toFixed(2);
 	var text2 = point.bed.toFixed(2);
 	var text3 = point.surface.toFixed(2);
-	var text4 = point.SMB.toFixed(2);	
+	var text4 = point.SMB.toFixed(2);
 	var text5 = point.thickness.toFixed(2);
 	var text6 = point.T2M.toFixed(2);
 		
@@ -243,6 +238,7 @@ $(function(){
 		//var point = retrieveData(lat, lon);
 		console.log("Point made it!");
 
+		//This line ensures that the AJAX call finishes before initiating callback to the rest of the table update
 		ajaxPoint(lat, lon, function (result) {
 
 			var line = handle_point(result, oldPoints, 1, 1);

@@ -17,6 +17,7 @@ from django.core.cache import cache
 def display_home(request):
     return render(request, 'UGP/index.html',{})
 
+#This view sends the point data to the table, same as the get_flowline
 @csrf_exempt
 def get_point_data(request):
     if request.method == 'POST':
@@ -28,8 +29,8 @@ def get_point_data(request):
 
         datasetDict = createInitialDatasets()
         interp_point = Point(datasetDict, lonLatTrans.xPoints, lonLatTrans.yPoints)
-        #json_pointdata = {interp_point.dataValues}
 
+        #Returns a JSON containing all the datasets for the point
         return JsonResponse(interp_point.dataValues)
 
     else: return HttpResponse("This is not a POST request")
@@ -45,7 +46,7 @@ def get_flowline(request):
         print("Processing Flowline!")
     # process JSON xy points (Deserialize JSON)
         json_data = json.loads(request.body)
-        long = json_data['long']
+        long = json_data['lon']
         lat = json_data['lat']
         distance = 300
         #resolution 1000
@@ -55,8 +56,6 @@ def get_flowline(request):
 
     # create datasets; this is temporary until I find a way to store it
         myDatasetDict = createInitialDatasets()
-        # myDatasetDict = cache.get('myDict')
-        # print(myDatasetDict)
 
     # put translated point into flowline
         initialFlowline = Flowline(lonLatTrans.xPoints[0], lonLatTrans.yPoints[0], myDatasetDict, distance)
