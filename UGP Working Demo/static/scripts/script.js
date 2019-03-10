@@ -114,8 +114,6 @@ function printData(point, numRows){
 	cell5.innerHTML = text5;
 	cell6.innerHTML = text6;
 
-	numRows++;
-	return;
 }
 
 //This function loads the Point dropdown list with values
@@ -184,11 +182,7 @@ $(function(){
 	var numPoints = 0;
 	var numLines = 0;
 	var numRows = 1;
-	// var lat = 0.0;
-	// var lon = 0.0;
-	// var list = "";
 	var oldPoints = 0;
-	//var num = 0;
 	var i;
 
 	//Event handler for point dropdown
@@ -232,7 +226,6 @@ $(function(){
 		var lon = $("#longinput").val(); 
 
 		points = [];
-		mode = 0;
 
 		//Create point with data from server & add to points list
 		//var point = retrieveData(lat, lon);
