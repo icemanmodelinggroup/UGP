@@ -1,51 +1,62 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 	<title>Universal Glacier Profiler - Icemen</title>
 	
 	<!--Metadata and scripts-->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--TODO: Containerize these -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	<script src="scripts/script.js"></script>
 	<link rel="stylesheet" href="cssStyle.css">
-
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZbuGSEBqEPNHYvx1MzAIeX3MU6jOHjMw&callback=initMap">
     </script>
-	
-
 </head>
 
 <body>
-	<!--Creates the navigation bar on the top of the page-->
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Universal Glacier Profiler</a>
-			</div>
-			<div class="col-lg-5"></div>
-			<div class="col-md-2"></div>
-			<div class="navbar-header">
-				<a class="navbar-brand justify-content-end" href="#">Icemen Development Group</a>
-				<img src="./images/ice3.png" width="40px" height="40px" />
-				<img src="./images/ice4.png" width="40px" height="40px" />
-		</div>
-	</nav>		
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lessons
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Lesson 1-1</a></li>
+                        <li><a href="#">Lesson 1-2</a></li>
+                        <li><a href="#">Lesson 1-3</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li>
+                    <a href="#">References</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
 	<!--Creates the page body-->
 	<main role="main" class="container-fluid">
+
+        <!--Map Selector-->
 		<div class="row">
-			<div class="col-md-4">
-			<h5>Click on a terminus point on the map to generate a flow line:</h5>
-			</div>
 			<div class="col-md-2 text-left">
-			<label for="mapType"><font size="-1">Map type:</font></label>
+			<label for="mapType"><font size="1">Map type:</font></label>
 			<select id="mapType">
 				<option value="0">Velocity</option>
 				<option value="1">Bed</option>
@@ -56,13 +67,17 @@
 			</select>
 			</div>
 		</div>
-		<!-- Creates the map image container-->
+
+
 		<div class="row">
+
+		    <!-- Creates the map image container-->
 			<div class="col-12 col-md-6 left-sidebar">
 				<div class="text-center">
 					<div id="map"></div> 
 				</div>
 			</div>
+
 			<!--Creates the right side pane-->
 			<div class="col-12 col-md-6 right-sidebar">
 				<div class="row">
@@ -75,9 +90,6 @@
 						<div class="row">
 							<div class="panel-body"></div>
 						</div>
-						<div class="row">
-							<h5>N,</h5>
-						</div>
 					</div>
 					<div class="col-xs-3">
 						<label for="latinput">Longitude</label>
@@ -87,17 +99,14 @@
 						<div class="row">
 							<div class="panel-body"></div>
 						</div>
-						<div class="row">
-							<h5>E</h5>
-						</div>
 					</div>
+                    <!--TODO Anyway to change this to align better with the Lat Long inputs? -->
 					<div class="col-xs-3">
-						<button type="button" class="btn btn-primary" id="gobutton" name="go" value="Go">Fetch data</button>	
+						<button type="button" class="btn btn-primary" id="gobutton" name="go" value="Go">Get data</button>	
 					</div>
 				</div>
-				<div class="row">
-					<div class="panel-body"></div>
-				</div>
+
+                <!--TODO Rethink this!
 				<div class="row">
 					<div class="col-md-4">
 						<div class="dropdown">
@@ -114,9 +123,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="panel-body"></div>
-				</div>
+                -->
+
+                <!--TODO give buffer between each of these objects NOT using unnecessary divs(CSS) -->
 				<div class="row">
 					<!--Creates the table-->
 					<table style="width:100%" id="consoletable">
@@ -130,7 +139,7 @@
 							<th>T2M</th>
 						</tr>
 					</table>
-			</div>
+			    </div>
 		</div>
 </body>
 	<script src="scripts/map.js"></script>
