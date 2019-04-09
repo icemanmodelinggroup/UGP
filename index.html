@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Universal Glacier Profiler - Icemen</title>
+	
+	<!--Metadata and scripts-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="{% static 'scripts/script.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'cssStyle.css' %}">
+
+
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZbuGSEBqEPNHYvx1MzAIeX3MU6jOHjMw&callback=initMap">
+    </script>
+</head>
+<body>
+
+<h1 id="selectMap">Select Map</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+	<!--Make Image and Text links to Antarctica.html   -->
+	  <a href="http://localhost/projectFile/Antarctica.html">
+      <h3>Antarctica</h3></a>
+	  
+	  <a href="http://localhost/projectFile/Antarctica.html">
+      <img src="antarctica-map.gif" alt="Antarctica" width="500" height="600"> </a>
+      
+    </div>
+    <div class="col-sm-6">
+	  <!--Make Image and Text links to Greenland.html   -->
+	  <a href="http://localhost/projectFile/Greenland.html">
+      <h3>Greenland</h3></a>
+	  <a href="http://localhost/projectFile/greenland.html">
+      <img src="greenland.jpg" alt="greenland" width="500" height="600"></a>
+      
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
