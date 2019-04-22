@@ -1,5 +1,6 @@
 #requirements.txt
 
+#Need to install lrucache BEFORE Django as pip will error saying they aren't compatible(they are!)
 django-lrucache-backend==2.0.0
 Django==2.1.7
 fenics==2018.1.0
